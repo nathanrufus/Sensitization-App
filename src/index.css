@@ -17,4 +17,17 @@
     .navbar h1 {
         display: none;
     }
+
+    .btn {
+        font-size: 0.6rem;
+        padding: 0.5rem;
+    }
+
+    .list {
+        display: none;
+    }
+
+    .prof {
+        display: none;
+    }
 }
