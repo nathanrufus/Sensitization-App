@@ -6,9 +6,9 @@ import Content from "./Content"
 function Home() {
 	return (
 		<div className=" flex flex-row items-center justify-between">
-			<Navbar />
+		
 			<Content />
-			<Rightside />
+		
 		</div>
 	)
 }
