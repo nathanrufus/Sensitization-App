@@ -10,6 +10,14 @@ class User(db.Model):
     users= db.relationship('Post', backref='posts', lazy=False)
     user_comments= db.relationship('Comment', backref='comments', lazy=False)
 
+    def serialize(self):
+        return {
+            "id":self.id,
+            "name":self.name,
+            "email":self.email,
+            "password":self.password
+        }
+
 class Post(db.Model):
     __tablename__='posts'   
     id=db.Column(db.Integer,primary_key=True)
