@@ -11,10 +11,12 @@ with app.app_context():
     User.query.delete()
     for i in range(20):
         result=[]
+        roles=["admin","user"]
         new_user=User(
             name=fake.name(),
             email=fake.email(),
-            password=fake.password()
+            password=fake.password(),
+            role=rc(roles)
         )
         result.append(new_user)
         db.session.add_all(result)

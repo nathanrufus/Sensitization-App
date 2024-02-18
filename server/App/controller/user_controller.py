@@ -1,8 +1,10 @@
 from App.models import User
 from flask import request, jsonify
-from App import db
+from App import db,bcrypt
 from sqlalchemy.exc import SQLAlchemyError
 import logging
+from flask_jwt_extended import create_access_token,unset_jwt_cookies
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -25,14 +27,15 @@ def register_user():
         user_exist=User.query.filter_by(email=email).first() is not None
         if user_exist:
             return jsonify({'error':'user exist'}),409
-        new_user=User(name=name,email=email,password=password)
+        hashed_password= bcrypt.generate_password_hash(password)  
+        new_user=User(name=name,email=email,password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
         return jsonify({
             "name":new_user.name,
             "email":new_user.email,
-            "password":new_user.password
+            # "password":new_user.password
         })
     except SQLAlchemyError as e:
         handle_error(e,500)
@@ -48,11 +51,20 @@ def login_user():
 
         if user is None:
             return jsonify({"error":"unauthorized"}),401 
-        if userpass is None:
+        if not bcrypt.check_password_hash(user.password,password):
             return jsonify({"error":"unauthorized"}),401 
         
-        # if not bcrypt.check_password_hash(user.password,password):
-        #     return jsonify({"error":"unauthorized"}),401 
-        return jsonify({"message":"Successfully logged in"})
+        access_token=create_access_token(identity=email)
+        return jsonify({"access_token":access_token})
+    
+
     except SQLAlchemyError as e:
         handle_error(e,500)           
+def logout():
+    try:
+        response = jsonify({"msg": "Logout successful"})
+        unset_jwt_cookies(response)
+        return response, 200
+    except SQLAlchemyError as e:
+        return handle_error(e,500)            
+
