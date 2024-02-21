@@ -1,5 +1,5 @@
 from App.models import User
-from flask import request, jsonify
+from flask import request, jsonify,make_response
 from App import db,bcrypt
 from sqlalchemy.exc import SQLAlchemyError
 import logging
@@ -24,21 +24,39 @@ def register_user():
         name=data['name']
         email=data['email']
         password=data['password']
+        role=data['role']
+
         user_exist=User.query.filter_by(email=email).first() is not None
         if user_exist:
             return jsonify({'error':'user exist'}),409
         hashed_password= bcrypt.generate_password_hash(password)  
-        new_user=User(name=name,email=email,password=hashed_password)
+        new_user=User(name=name,email=email,password=hashed_password,role=role)
         db.session.add(new_user)
         db.session.commit()
 
         return jsonify({
             "name":new_user.name,
             "email":new_user.email,
+            "role":new_user.role,
             # "password":new_user.password
         })
     except SQLAlchemyError as e:
         handle_error(e,500)
+def get_by_id(user_id):
+    try:
+        user=User.query.filter_by(id=user_id).first()
+        return jsonify(user.serialize()),200
+    except SQLAlchemyError as e:
+        return handle_error(e,500)
+       
+def delete(user_id):
+    try:
+        user=User.query.filter_by(id=user_id).first()
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({"message":"deleted successfully"}),200
+    except SQLAlchemyError as e:
+        return handle_error(e,500)    
 
 def login_user():
     try:
@@ -47,7 +65,6 @@ def login_user():
         email=data['email'] 
 
         user=User.query.filter_by(email=email).first() 
-        userpass=User.query.filter_by(password=password).first() 
 
         if user is None:
             return jsonify({"error":"unauthorized"}),401 
