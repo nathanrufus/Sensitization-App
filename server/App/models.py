@@ -3,10 +3,10 @@ from . import db
 class User(db.Model):
     __tablename__='users'
     id=db.Column(db.Integer,primary_key=True)
-    name=db.Column(db.String(100),nullable=False)
+    name=db.Column(db.String(100))
     role=db.Column(db.String(100))
-    email=db.Column(db.String(100),nullable=False)
-    password=db.Column(db.String(100),nullable=False)
+    email=db.Column(db.String(100))
+    password=db.Column(db.String(100))
 
     users= db.relationship('Post', backref='posts', lazy=False)
     user_comments= db.relationship('Comment', backref='comments', lazy=False)

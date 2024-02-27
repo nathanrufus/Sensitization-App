@@ -20,7 +20,6 @@ function Navbar() {
 				<ul className=" flex flex-col">
 					<div className=" flex flex-row items-center hover:bg-blue-400 transition-all duration-200 mb-2 hover:rounded-[2rem] p-2">
 						<Link to="/">
-							
 							<FaHome className="  text-2xl rounded cursor-pointer float-left mr-2" />
 						</Link>
 						<Link to="/" className="  list text-2xl">
@@ -29,7 +28,6 @@ function Navbar() {
 					</div>
 					<div className=" flex flex-row items-center hover:bg-blue-400 transition-all duration-200 mb-1 hover:rounded-[2rem] p-2">
 						<Link to="/about">
-							
 							<FcAbout className="   text-2xl rounded cursor-pointer float-left mr-2" />
 						</Link>
 
@@ -49,7 +47,9 @@ function Navbar() {
 						<Link to="profile">
 							<AiFillProfile className="  text-2xl rounded cursor-pointer float-left mr-2" />
 						</Link>
-						<Link to="profile" className=" list text-2xl">profile</Link>
+						<Link to="profile" className=" list text-2xl">
+							profile
+						</Link>
 					</div>
 				</ul>
 				<div>

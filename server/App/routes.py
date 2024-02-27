@@ -1,17 +1,17 @@
 from flask import Blueprint
 from App.controller.user_controller import get,register_user,login_user,delete,get_by_id
 from App.controller.post_controller import getpost_by_id,get_post
-from App.controller.comment_controller import get_comment
+from App.controller.comment_controller import get_comment,getcomment_by_id
+from flask_jwt_extended import jwt_required
 
 
-from .roles import admin_required,user_required
+from .roles import admin_required
 from App import jwt
 
 bp = Blueprint('bp', __name__)
 
 
 @bp.route('/')
-# @user_required
 def home():
     return 'Welcome home lets sensitize'
 @bp.route('/users', methods=['GET'])
@@ -27,8 +27,12 @@ def delete_users(user_id):
 # post routes
 
 @bp.route('/posts', methods=['GET'])
+# @jwt_required()
 def get_myposts():
     return get_post()
+@bp.route('/posts/<int:user_id>', methods=['GET'])
+def get_postid(user_id):
+    return getpost_by_id(user_id)
 @bp.route('/users/<int:post_id>', methods=['DELETE'])
 def delete_posts(post_id):
     return delete(post_id)
@@ -46,3 +50,6 @@ def log_user():
 @bp.route('/comments', methods=['GET'])
 def get_comments():
     return get_comment()
+@bp.route('/comments/<int:id>', methods=['GET'])
+def getcomments_by_id(id):
+    return getcomment_by_id(id)
