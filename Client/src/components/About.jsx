@@ -12,15 +12,26 @@ function About() {
 							</h2>
 
 							<p class="mb-10 text-base leading-7 text-gray-500 dark:text-gray-400">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-								enim ad minim veniam Lorem ipsum dolor sit amet, consectetur
-								adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-								dolore magna aliqua. Ut enim ad minim veniamLorem ipsum dolor
-								sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-								veniamLorem ipsum dolor sit amet, consectetur adipiscing elit,
-								sed do eiusmod tempor
+								 Our Mission: At the core of sensitization app's mission is the
+								commitment to cultivating a msensitization appsionate and informed
+								global community. We strive to break down barriers, challenge
+								stereotypes, and encourage dialogue on issues that matter most.
+								Through this mission, we aim to create a ripple effect of
+								positive change that extends far beyond the digital realm. Key
+								Features: 1. Diverse Content: sensitization app provides a vast array
+								of multimedia content, including articles, videos, podcasts, and
+								interactive modules, covering a wide spectrum of social issues.
+								Our content is meticulously curated to ensure relevance,
+								accuracy, and engagement. 2. Interactive Learning: We believe in
+								the power of experiential learning. Our app goes beyond
+								traditional educational methods by incorporating interactive
+								modules that allow users to actively engage with the content,
+								enhancing their understanding and retention of key concepts. 3.
+								Real-Life Stories: To make sensitization relatable, sensitization app
+								features real-life stories from individuals who have experienced
+								or overcome social challenges. These stories inspire empathy,
+								foster connection, and demonstrate the impact of collective
+								action. 
 							</p>
 
 							<a

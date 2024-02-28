@@ -4,18 +4,57 @@ import { AiOutlineLike } from "react-icons/ai"
 import { GoComment } from "react-icons/go"
 import { useNavigate } from "react-router-dom"
 function Content({ item }) {
+	const [comment, setcomment] = useState("")
+
 	const navigate = useNavigate()
 
 	const [open, setopen] = useState(true)
+	const createpost = () => {
+		navigate("/createpost")
+	}
+	const comentsection = () => {
+		navigate("/comments")
+	}
+	const add_comment = () => {
+		fetch("http://127.0.0.1:5000/comments", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ comment: comment }),
+		})
+			.then((res) => {
+				if (res.status === 200) {
+					return res.json() // Parse the response JSON when status is 200
+				} else {
+					throw new Error(`HTTP error! Status: ${res.status}`)
+				}
+			})
+			.then((data) => {
+				console.log(data)
+				localStorage.setItem("token", data.access_token)
+				setRefreshPage(!refreshPage)
+				navigate("/")
+			})
+			.catch((error) => console.error("There was an error", error))
+	}
 
+	const handlesubmit = (e) => {
+		e.preventDefault()
+		setcomment("")
+		add_comment()
+	}
 	return (
 		<div>
-			<div className=" bg-white h-screen p-5 pt-8 w-full overflow-scroll">
-				<div className=" flex flex-row text-sm md:text-2xl items-center justify-between">
+			<div className=" bg-white h-screen p-5 pt-8 w-full overflow-scroll max-w-full ">
+				<div className=" flex flex-row text-sm md:text-2xl items-center justify-between w-full max-w-full">
 					<h1 className=" text-2xl text-blue-700 hover:text-blue-300 transition-all duration-300 cursor-pointer">
 						Posts
 					</h1>
-					<button className="bg-blue-500 py-2 px-4 text-white rounded hover:bg-white hover:text-blue-500 transition-all duration-500 md:text-sm">
+					<button
+						onClick={createpost}
+						className="bg-blue-500 py-2 px-4 text-white rounded hover:bg-white hover:text-blue-500 transition-all duration-500 md:text-sm"
+					>
 						Create Post
 					</button>
 				</div>
@@ -33,8 +72,8 @@ function Content({ item }) {
 							</div>
 						</div>
 						<div className="flex flex-col items-baseline justify-center">
-							<p>{obj.message}</p>
-							<div className=" w-full max-w-sm rounded overflow-hidden shadow-lg">
+							<p onClick={comentsection}>{obj.message}</p>
+							<div className=" w-full max-w-lg rounded overflow-hidden shadow-lg">
 								<img
 									src={sma}
 									alt=""
@@ -43,7 +82,6 @@ function Content({ item }) {
 								/>
 							</div>
 
-							
 							<div className=" m-5 flex text-grey items-baseline w-full flex-col">
 								<div className=" flex">
 									<div class="flex items-center mr-8">
@@ -84,60 +122,27 @@ function Content({ item }) {
 										</div>
 
 										<div class="w-full px-3 my-1">
-											<textarea
-												class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-												name="body"
-												placeholder="Type Your Comment"
-												required
-											></textarea>
-										</div>
-
-										<div class="w-full flex justify-end px-3">
-											<input
-												type="submit"
-												class="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500"
-												value="Post Comment"
-											/>
+											<form onSubmit={handlesubmit}>
+												<textarea
+													class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+													name="body"
+													placeholder="Type Your Comment"
+													required
+													value={comment}
+												onChange={(e) => setcomment(e.target.value)}
+												></textarea>
+												<input
+													type="submit"
+													class="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500"
+												/>
+											</form>
 										</div>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
-			))}
-
-				{/* <div className=" rounded-md border px-6 py-4 max-w-full mt-2 w-full">
-				<div className=" flex ml-4">
-					<CgProfile className="  text-2xl rounded cursor-pointer float-left mr-2" />
-					<h1 className=" font-semibold mb-0">Kibet nathan</h1>
-				</div>
-				<div className="flex flex-col items-baseline justify-center">
-					<p>
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid
-						eius magni unde ex veniam neque totam culpa quas molestiae sequi
-						recusandae, beatae necessitatibus inventore perferendis? Aut quasi
-						aperiam iure vero.
-					</p>
-					<div className=" w-full max-w-sm rounded overflow-hidden shadow-lg">
-						<img
-							src={sma}
-							alt=""
-							loading="lazy"
-							className="w-full h-64 object-cover"
-						/>
-					</div>
-					<div className=" m-5 flex text-grey items-center w-full">
-						<div class="flex items-center mr-8">
-							<AiOutlineLike className=" text-2xl cursor-pointer" />
-							<span>616</span>
-						</div>
-						<div class="flex items-center mr-4">
-							<GoComment className=" text-2xl pt-1 pr-1 cursor-pointer" />
-							<span>406</span>
-						</div>
-					</div>
-				</div>
-			</div> */}
+				))}
 			</div>
 		</div>
 	)

@@ -3,8 +3,8 @@ import { CiSearch } from "react-icons/ci"
 
 function Rightside() {
 	return (
-		<div className=" flex flex-col rightside p-5 pt-2 h-screen w-5/12 border-l-[1px]">
-			<div className=" flex flex-col items-center rounded-md  mt-4 px-4 py-2 outline-2">
+		<div className=" flex flex-col rightside p-5 pt-2 h-screen w-5/12 border-l-[1px] ">
+			<div className=" flex flex-col items-baseline rounded-md  mt-4 px-4 py-2 outline-2">
 				<form class="flex items-center">
 					<label for="simple-search" class="sr-only">
 						Search

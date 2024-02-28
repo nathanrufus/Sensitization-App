@@ -10,6 +10,7 @@ import Profile from "./components/Profile"
 import Register from "./components/Register"
 import Login from "./components/Login"
 import CreatePost from "./components/CreatePost"
+import Contact from "./components/Contact"
 function App() {
 	return (
 		<div className=" flex flex-row items-center justify-between">
@@ -21,6 +22,8 @@ function App() {
 				<Route path="/about" element={<About />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/createpost" element={<CreatePost />} />
+				<Route path="/comments" element={<Comments />} />
+				<Route path="/contact" element={<Contact />} />
 			</Routes>
 			<Rightside />
 			{/* <Register/> 
