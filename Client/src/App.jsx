@@ -22,12 +22,10 @@ function App() {
 				<Route path="/about" element={<About />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/createpost" element={<CreatePost />} />
-				<Route path="/comments" element={<Comments />} />
+				<Route path="/comment" element={<Comments />} />
 				<Route path="/contact" element={<Contact />} />
 			</Routes>
 			<Rightside />
-			{/* <Register/> 
-			 <Login/> */}
 		</div>
 	)
 }

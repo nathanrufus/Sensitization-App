@@ -18,15 +18,12 @@ function Comments() {
 	useEffect(() => {
 		const loadcomments = async () => {
 			try {
-				const response = await axios.get(
-					`http://127.0.0.1:5000/comments`,
-					{
-						method: "GET",
-						headers: {
-							Authorization: `Bearer ${localStorage.getItem("token")}`,
-						},
-					}
-				)
+				const response = await axios.get(`http://127.0.0.1:5000/comment`, {
+					method: "GET",
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
+					},
+				})
 				console.log(response.data)
 				setComment(response.data)
 			} catch (error) {
@@ -38,9 +35,10 @@ function Comments() {
 		loadcomments()
 	}, [])
 	const add_comment = () => {
-		fetch("http://127.0.0.1:5000/comments", {
+		fetch("http://127.0.0.1:5000/comment", {
 			method: "POST",
 			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({ comment: comment }),
@@ -54,7 +52,6 @@ function Comments() {
 			})
 			.then((data) => {
 				console.log(data)
-				localStorage.setItem("token", data.access_token)
 				setRefreshPage(!refreshPage)
 				navigate("/")
 			})
@@ -75,7 +72,10 @@ function Comments() {
 					comments.map((obj) => (
 						<div>
 							<div className=" rounded-md border px-6 py-4 max-w-full mt-2 w-full">
-								<IoIosArrowRoundBack className=" text-2xl cursor-pointer" onClick={Back}/>
+								<IoIosArrowRoundBack
+									className=" text-2xl cursor-pointer"
+									onClick={Back}
+								/>
 								<div className=" flex ml-4">
 									<img
 										src={sma}
