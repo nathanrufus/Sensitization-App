@@ -48,9 +48,10 @@ def log_user():
 
 # comment route
 @bp.route('/comments', methods=['GET'])
+# @jwt_required()
 def get_comments():
     return get_comment()
-@jwt_required()
-@bp.route('/comments/<int:user_id>', methods=['GET'])
-def getcomments_by_id(user_id):
-    return getcomment_by_id(user_id)
+@bp.route('/comment', methods=['GET'])
+# @jwt_required()
+def getcomments_by_id():
+    return getcomment_by_id()

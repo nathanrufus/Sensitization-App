@@ -6,6 +6,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from datetime import timedelta
 import secrets
+import os
 
 
 
@@ -22,7 +23,8 @@ def create_app():
     jwt_secret_key = secrets.token_urlsafe(32)
     flask_secret_key = secrets.token_urlsafe(16)
 
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///sensitize.db'
+    app.config['SQLALCHEMY_DATABASE_URI']='postgresql://sensitization_app_user:m43TYykCUSL9t1m9IBdSbYa5Og7n6n3g@dpg-cnin16v79t8c73bt7qr0-a.oregon-postgres.render.com/sensitization_app'
+    # postgres://sensitization_app_user:m43TYykCUSL9t1m9IBdSbYa5Og7n6n3g@dpg-cnin16v79t8c73bt7qr0-a.oregon-postgres.render.com/sensitization_app
     app.config['SQLALCHEMY_TRACK_MODIFICATION']=False
     app.secret_key = 'super secret key'
 
