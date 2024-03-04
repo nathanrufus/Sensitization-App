@@ -6,7 +6,7 @@ from flask_jwt_extended import jwt_required
 
 
 from .roles import admin_required
-from App import jwt
+from . import jwt
 
 bp = Blueprint('bp', __name__)
 
