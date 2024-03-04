@@ -1,6 +1,6 @@
-from App.models import Comment
+from ..models import Comment
 from flask import request, jsonify,make_response
-from App import db,bcrypt,jwt
+from . import db,bcrypt,jwt
 from sqlalchemy.exc import SQLAlchemyError
 import logging
 from flask_jwt_extended import get_jwt_identity,current_user

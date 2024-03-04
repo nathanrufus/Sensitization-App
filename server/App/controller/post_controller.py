@@ -1,6 +1,6 @@
-from App.models import Post
+from ..models import Post
 from flask import request, jsonify,make_response
-from App import db,bcrypt
+from . import db,bcrypt
 from sqlalchemy.exc import SQLAlchemyError
 import logging
 from flask_jwt_extended import jwt_required,get_jwt_identity
