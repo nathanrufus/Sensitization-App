@@ -1,6 +1,6 @@
-from .models import User
+from ..models import User
 from flask import request, jsonify,make_response
-from . import db,bcrypt,jwt
+from .. import db,bcrypt,jwt
 from sqlalchemy.exc import SQLAlchemyError
 import logging
 from flask_jwt_extended import create_access_token,unset_jwt_cookies
