@@ -1,7 +1,7 @@
 from flask import Blueprint
-from App.controller.user_controller import get,register_user,login_user,delete,get_by_id
-from App.controller.post_controller import getpost_by_id,get_post
-from App.controller.comment_controller import get_comment,getcomment_by_id
+from .controller.user_controller import get,register_user,login_user,delete,get_by_id
+from .controller.post_controller import getpost_by_id,get_post
+from .controller.comment_controller import get_comment,getcomment_by_id
 from flask_jwt_extended import jwt_required
 
 
