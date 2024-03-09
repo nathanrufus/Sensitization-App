@@ -8,7 +8,7 @@ function Home() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch("http://127.0.0.1:5000/posts", {
+				const response = await fetch("http://127.0.0.1:5432/posts", {
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("token")}`,
 					},
