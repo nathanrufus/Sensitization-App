@@ -8,7 +8,7 @@ function CreatePost() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/posts`, {
+      const response = await fetch(`http://127.0.0.1:5432/posts`, {
         method:"GET",
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}`,
