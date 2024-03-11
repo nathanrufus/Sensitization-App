@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import sma from "./Assets/sma.jpg";
 import { useNavigate } from "react-router-dom";
+import sequelize from "./db";
 
 function CreatePost() {
 	const navigate = useNavigate()
@@ -8,7 +9,7 @@ function CreatePost() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5432/posts`, {
+      const response = await fetch(`http://127.0.0.1:5000/posts`, {
         method:"GET",
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}`,

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Content from "./Content"
+import sequelize from "./db"
 import CreatePost from "./CreatePost"
 
 function Home() {
@@ -8,7 +9,7 @@ function Home() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch("http://0.0.0.0:5432/posts", {
+				const response = await fetch("http://127.0.0.1:5000/posts", {
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("token")}`,
 					},
