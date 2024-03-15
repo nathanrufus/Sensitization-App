@@ -1,6 +1,6 @@
 from flask import Blueprint
 from .controller.user_controller import get,register_user,login_user,delete,get_by_id
-from .controller.post_controller import getpost_by_id,get_post
+from .controller.post_controller import getpost_by_id,get_post,create_post
 from .controller.comment_controller import get_comment,getcomment_by_id
 from flask_jwt_extended import jwt_required
 
@@ -25,7 +25,9 @@ def delete_users(user_id):
     return delete(user_id)
 
 # post routes
-
+@bp.route('/posts', methods=['POST'])
+def create_myposts():
+    return create_post()
 @bp.route('/posts', methods=['GET'])
 # @jwt_required()
 def get_myposts():

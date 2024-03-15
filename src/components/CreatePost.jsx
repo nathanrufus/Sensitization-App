@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import sma from "./Assets/sma.jpg";
 import { useNavigate } from "react-router-dom";
-import sequelize from "./db";
 
 function CreatePost() {
-	const navigate = useNavigate()
+	// const navigate = useNavigate()
   const [item, setItem] = useState([]);
 
   const fetchData = async () => {
@@ -23,7 +22,7 @@ function CreatePost() {
       const data = await response.json();
       console.log(data);
       setItem(data); 
-      navigate("/")
+      // navigate("/")
       // Update the state with the fetched data
     } catch (error) {
       console.error("Error fetching data:", error);

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react"
 import Content from "./Content"
-import sequelize from "./db"
-import CreatePost from "./CreatePost"
 
 function Home() {
 	const [item, setItem] = useState([])

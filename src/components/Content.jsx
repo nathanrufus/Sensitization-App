@@ -46,7 +46,7 @@ function Content({ item }) {
 	}
 	return (
 		<div>
-			<div className=" bg-white h-screen p-5 pt-8 w-full overflow-scroll max-w-full ">
+			<div className=" bg-white h-screen p-5 pt-8 w-full overflow-scroll md:max-w-full sm:mx-auto ">
 				<div className=" flex flex-row text-sm md:text-2xl items-center justify-between w-full max-w-full">
 					<h1 className=" text-2xl text-blue-700 hover:text-blue-300 transition-all duration-300 cursor-pointer">
 						Posts
